@@ -16,33 +16,20 @@ class ViewController: UIViewController {
 
     //MARK: @IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var submarineImageView: UIImageView!
     
     //MARK: GestureRecognizers - Outlets for setting delegates
     @IBOutlet var swipeGestureRecognizer: UISwipeGestureRecognizer!
-    @IBOutlet var submarineGestureRecognizer: UILongPressGestureRecognizer!
     
     //Actions for telling the swipeGestureRecognizers what to do
     @IBAction func swipeGestureRecognizerAction(swipe: UISwipeGestureRecognizer) {
         if (swipe.state == .Began && swipe.direction == .Left) || (swipe.state == .Began && swipe.direction == .Right) {
-            changeAlpha(submarineImageView, alpha: 0.50)
+        
             
         }
         
         if swipe.state == .Ended {
-            changeAlpha(submarineImageView, alpha: 1)
-            
-        }
         
-    }
-    
-    @IBAction func submarineGestureReconizerAction(press: UILongPressGestureRecognizer) {
-        if press.state == .Began {
-            changeAlpha(submarineImageView, alpha: 0.50)
-        }
-        if press.state == .Ended {
-            changeAlpha(submarineImageView, alpha: 1)
-
+            
         }
         
     }
@@ -60,19 +47,22 @@ class ViewController: UIViewController {
         let redSide = UIViewController(nibName: VIEW3, bundle: nil)
 
         //SideViews
-        greenSide.view.frame.origin.x = view.frame.origin.x
+        greenSide.view.frame.origin.x = scrollView.frame.origin.x
+        redSide.view.frame.origin.x = scrollView.frame.midX
+        
+//        greenSide.view.frame.origin.y = view.frame.midY
+//        greenSide.view.frame.height = view.frame.height
         redSide.view.frame.origin.x = view.frame.midX
         view.addSubview(greenSide.view)
         view.addSubview(redSide.view)
-        
+
         //MainViews
         scrollView.addSubview(loginVC.view)
         scrollView.addSubview(mainVC.view)
         scrollView.addSubview(signUpVC.view)
-        
+
         view.bringSubviewToFront(scrollView)
-        view.bringSubviewToFront(submarineImageView)
-        
+
         //Laying out the different views in the scrollView
         mainVC.view.frame.origin.x = view.frame.width
         signUpVC.view.frame.origin.x = view.frame.width * 2
@@ -84,7 +74,6 @@ class ViewController: UIViewController {
         
         //Setting the delegates of the GestureRecoginzers above
         swipeGestureRecognizer.delegate = self
-        submarineGestureRecognizer.delegate = self
 
     }
     

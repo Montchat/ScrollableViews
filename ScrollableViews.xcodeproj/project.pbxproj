@@ -47,6 +47,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B7CDE191C1E386700604B03 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2BC873B81C1DE62D00E32044 /* View1.swift */,
+				2BC873B91C1DE62D00E32044 /* View1.xib */,
+				2BC873BE1C1DE87A00E32044 /* View2.swift */,
+				2BC873BF1C1DE87A00E32044 /* View2.xib */,
+				2BC873C31C1DEA8F00E32044 /* View3.swift */,
+				2BC873C41C1DEA8F00E32044 /* View3.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		2BC8739A1C1DE61C00E32044 = {
 			isa = PBXGroup;
 			children = (
@@ -80,12 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				2BC873A81C1DE61C00E32044 /* ViewController.swift */,
-				2BC873B81C1DE62D00E32044 /* View1.swift */,
-				2BC873B91C1DE62D00E32044 /* View1.xib */,
-				2BC873BE1C1DE87A00E32044 /* View2.swift */,
-				2BC873BF1C1DE87A00E32044 /* View2.xib */,
-				2BC873C31C1DEA8F00E32044 /* View3.swift */,
-				2BC873C41C1DEA8F00E32044 /* View3.xib */,
+				2B7CDE191C1E386700604B03 /* Views */,
 			);
 			name = Views;
 			sourceTree = "<group>";
