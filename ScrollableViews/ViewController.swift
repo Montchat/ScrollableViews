@@ -42,19 +42,21 @@ class ViewController: UIViewController {
         let mainVC = UIViewController(nibName: VIEW2, bundle: nil)
         let signUpVC = UIViewController(nibName: VIEW3, bundle: nil)
         
-        //Makes it look like the loginVC and the signUp VC are "stretchy"
-        let greenSide = UIViewController(nibName: VIEW1, bundle: nil)
-        let redSide = UIViewController(nibName: VIEW3, bundle: nil)
+        //Makes it look like the loginVC and the signUpVC are "stretchy"
+        let greenSide = UIView(frame: view.frame)
+        let redSide = UIView(frame: view.frame)
 
         //SideViews
-        greenSide.view.frame.origin.x = scrollView.frame.origin.x
-        redSide.view.frame.origin.x = scrollView.frame.midX
+//        greenSide.view.frame.origin.x = scrollView.frame.origin.x
         
-//        greenSide.view.frame.origin.y = view.frame.midY
-//        greenSide.view.frame.height = view.frame.height
-        redSide.view.frame.origin.x = view.frame.midX
-        view.addSubview(greenSide.view)
-        view.addSubview(redSide.view)
+        greenSide.frame.origin = scrollView.frame.origin
+        greenSide.backgroundColor = loginVC.view.backgroundColor
+        redSide.frame.origin.x = scrollView.frame.midX
+        redSide.backgroundColor = signUpVC.view.backgroundColor
+        
+//        redSide.view.frame.origin.x = view.frame.midX
+        view.addSubview(greenSide)
+        view.addSubview(redSide)
 
         //MainViews
         scrollView.addSubview(loginVC.view)
