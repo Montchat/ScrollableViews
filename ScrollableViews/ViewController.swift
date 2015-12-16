@@ -23,12 +23,10 @@ class ViewController: UIViewController {
     //Actions for telling the swipeGestureRecognizers what to do
     @IBAction func swipeGestureRecognizerAction(swipe: UISwipeGestureRecognizer) {
         if (swipe.state == .Began && swipe.direction == .Left) || (swipe.state == .Began && swipe.direction == .Right) {
-        
-            
+           
         }
         
         if swipe.state == .Ended {
-        
             
         }
         
@@ -37,6 +35,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Creating our three viewControllers that will each contain their own view
+        
         let loginVC = UIViewController(nibName: VIEW1,
             bundle: nil)
         let mainVC = UIViewController(nibName: VIEW2, bundle: nil)
@@ -49,9 +48,9 @@ class ViewController: UIViewController {
         //SideViews
 //        greenSide.view.frame.origin.x = scrollView.frame.origin.x
         
-        greenSide.frame.origin = scrollView.frame.origin
+        greenSide.frame.origin = view.frame.origin
         greenSide.backgroundColor = loginVC.view.backgroundColor
-        redSide.frame.origin.x = scrollView.frame.midX
+        redSide.frame.origin.x = view.frame.midX
         redSide.backgroundColor = signUpVC.view.backgroundColor
         
 //        redSide.view.frame.origin.x = view.frame.midX

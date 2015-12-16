@@ -37,9 +37,12 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Fg3-fk-LO1"/>
                     </constraints>
-                    <state key="normal" title="login">
+                    <state key="normal" title="signup">
                         <color key="titleColor" red="0.75757575759999995" green="0.75757575759999995" blue="0.75757575759999995" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="signUpPressed:" destination="-1" eventType="touchUpInside" id="e3i-3K-faS"/>
+                    </connections>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IN9-Vj-get">
                     <rect key="frame" x="8" y="502" width="584" height="30"/>
@@ -64,6 +67,7 @@
                 <constraint firstItem="2tl-TI-mz5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="pDW-oJ-vJV"/>
                 <constraint firstAttribute="trailing" secondItem="IN9-Vj-get" secondAttribute="trailing" constant="8" id="snW-pt-7mC"/>
             </constraints>
+            <point key="canvasLocation" x="115" y="402"/>
         </view>
     </objects>
     <resources>

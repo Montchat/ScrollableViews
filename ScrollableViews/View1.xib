@@ -59,6 +59,7 @@
                 <constraint firstItem="UJB-jG-Bfn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="t9p-Oq-20s"/>
                 <constraint firstItem="YNV-cv-GiD" firstAttribute="top" secondItem="ddZ-vP-fpj" secondAttribute="bottom" constant="60" id="ygh-Rc-fn5"/>
             </constraints>
+            <point key="canvasLocation" x="292" y="374"/>
         </view>
     </objects>
     <resources>
