@@ -9,13 +9,15 @@
 import UIKit
 import Parse
 
-private let STORYBOARD = "Storyboard"
+private let STORYBOARD = "Users"
 
 class View3: UIViewController {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
+    
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     @IBAction func signUpPressed(sender: AnyObject) {
         guard let username = usernameTextField.text else { return }
@@ -25,9 +27,14 @@ class View3: UIViewController {
         signUpUser(username, password: password, email: email)
         
     }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+        emailTextField.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -35,6 +42,37 @@ class View3: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+}
+
+extension View3 : UITextFieldDelegate {
+    func textFieldDidBeginEditing(textField: UITextField) {
+        changeConstraintTo(bottomConstraint, amount: 300, duration: 0.33)
+        
+        
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        changeConstraintTo(bottomConstraint, amount: 8, duration: 0.33)
+        textField.resignFirstResponder()
+        
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        changeConstraintTo(bottomConstraint, amount: 8, duration: 0.33)
+        textField.resignFirstResponder()
+        
+        return true
+        
+    }
+    
+    func changeConstraintTo(constraint:NSLayoutConstraint, amount: CGFloat, duration: Double) {
+        UIView.animateWithDuration(duration) { () -> Void in
+            constraint.constant = amount
+            
+        }
+        
     }
     
 }
@@ -80,5 +118,7 @@ extension View3 {
         }
 
     }
+    
+    
     
 }

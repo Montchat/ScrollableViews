@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 private let VIEW1 = "View1"
 private let VIEW2 = "View2"
@@ -32,14 +33,15 @@ class ViewController: UIViewController {
         
     }
     
+    let loginVC = View1(nibName: VIEW1,
+        bundle: nil)
+    let mainVC = View2(nibName: VIEW2, bundle: nil)
+    let signUpVC = View3(nibName: VIEW3, bundle: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(PFUser.currentUser())
         //Creating our three viewControllers that will each contain their own view
-        
-        let loginVC = UIViewController(nibName: VIEW1,
-            bundle: nil)
-        let mainVC = UIViewController(nibName: VIEW2, bundle: nil)
-        let signUpVC = UIViewController(nibName: VIEW3, bundle: nil)
         
         //Makes it look like the loginVC and the signUpVC are "stretchy"
         let greenSide = UIView(frame: view.frame)
@@ -80,7 +82,9 @@ class ViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    
+
+        
+        
     }
     
 }
@@ -91,6 +95,26 @@ extension ViewController : UIGestureRecognizerDelegate {
         gestureRecognizer.delegate = self
         
     }
+    
+}
+
+extension ViewController : UITextFieldDelegate {
+    func textFieldDidBeginEditing(textField: UITextField) {
+        
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        textField.resignFirstResponder()
+        
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    
+    }
+
     
 }
 

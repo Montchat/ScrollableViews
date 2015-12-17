@@ -6,6 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="View3" customModule="ScrollableViews" customModuleProvider="target">
             <connections>
+                <outlet property="bottomConstraint" destination="mBP-Cm-st7" id="2DK-kM-pFA"/>
+                <outlet property="emailTextField" destination="IN9-Vj-get" id="2yI-ho-7NR"/>
+                <outlet property="passwordTextField" destination="snd-Xr-oSA" id="fHK-fx-Tnf"/>
+                <outlet property="usernameTextField" destination="2tl-TI-mz5" id="GSK-Po-kba"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

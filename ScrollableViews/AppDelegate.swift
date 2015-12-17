@@ -9,6 +9,9 @@
 import UIKit
 import Parse
 
+private let STORYBOARD = "Users"
+private let OTHER_STORYBOARD = "Main"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -16,20 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        // [Optional] Power your app with Local Datastore. For more info, go to
-        // https://parse.com/docs/ios/guide#local-datastore
         Parse.enableLocalDatastore()
         
         // Initialize Parse.
-        Parse.setApplicationId("pqa1AumQ4GRvaBTpGCtEaXyzPJHwyy0yya1L9Lhd",
-            clientKey: "M5OWuSEkohyCaoW7kVkXuOBXa2QrhYy983EcK3uA")
+        Parse.setApplicationId("AdcZBwd9CHJu1ED2pMlQeropO1Fl4DoMvvqxyEDW",
+            clientKey: "312S6I5yd3UputqXKDQciNtJPz2twP0vM9Sxz136")
         
         // [Optional] Track statistics around application opens.
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
+        checkForUserLogin()
+        
         return true
-        
-        
+
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -53,5 +55,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func checkForUserLogin() {
+        if PFUser.currentUser() != nil {
+            let initialVC = UIStoryboard(name: STORYBOARD, bundle: nil).instantiateInitialViewController()
+            window?.rootViewController = initialVC
+            
+        } else {
+            let initalVC = UIStoryboard(name: OTHER_STORYBOARD, bundle: nil).instantiateInitialViewController()
+            window?.rootViewController = initalVC
+        }
+        
+        window?.makeKeyAndVisible()
+        
+    }
+
 
 }

@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-private let STORYBOARD = "storyboard"
+private let STORYBOARD = "Main"
 
 class View1: UIViewController {
 
@@ -19,6 +19,7 @@ class View1: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     @IBAction func loginPressed(sender: AnyObject) {
+        print("pressed")
         guard let username = usernameTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
@@ -28,6 +29,10 @@ class View1: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+
 
     }
 
@@ -40,21 +45,22 @@ class View1: UIViewController {
 
 extension View1 : UITextFieldDelegate {
     func textFieldDidBeginEditing(textField: UITextField) {
-//        changeConstraintTo(bottomConstraint, amount: 150, duration: 0.33)
-        
+        changeConstraintTo(bottomConstraint, amount: 300, duration: 0.33)
         
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-//        changeConstraintTo(bottomConstraint, amount: 8, duration: 0.33)
+        changeConstraintTo(bottomConstraint, amount: 8, duration: 0.33)
         textField.resignFirstResponder()
+        
         
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-//        changeConstraintTo(bottomConstraint, amount: 8, duration: 0.33)
+        changeConstraintTo(bottomConstraint, amount: 8, duration: 0.33)
         textField.resignFirstResponder()
-        
+
+
         return true
     
     }
