@@ -40,7 +40,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(PFUser.currentUser())
         //Creating our three viewControllers that will each contain their own view
         
         //Makes it look like the loginVC and the signUpVC are "stretchy"

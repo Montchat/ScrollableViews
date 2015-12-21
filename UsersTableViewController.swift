@@ -9,65 +9,91 @@
 import UIKit
 import Parse
 
+private let CELL = "Cell"
+
 class UsersTableViewController: UITableViewController {
-    
-    var usersArray:[String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
     }
     
     override func viewDidAppear(animated: Bool) {
-        let query = PFUser.query()?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-            guard let returnedObjects = objects else { return }
-            guard let users = returnedObjects as? [PFObject] else { return }
-            for user in users {
-                guard let username = user["username"] as? String else { return }
-                self.usersArray.append(username)
-                print(self.usersArray)
-                
-            }
-
-        })
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
 
     // MARK: - Table view data source
 
 //    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 //        // #warning Incomplete implementation, return the number of sections
-//        return usersArray.cou
+//        return 1
 //    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(usersArray.count)
-        return usersArray.count
+        return 1
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-        cell.textLabel?.text = usersArray[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(CELL, forIndexPath: indexPath) as UITableViewCell
+        var usersArray:[String] = []
+        let query = PFUser.query()?.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+            guard let returnedObjects = objects else { return }
+            guard let users = returnedObjects as? [PFObject] else { return }
+            for user in users {
+                guard let username = user["username"] as? String else { return }
+                usersArray.append(username)
+                
+                cell.textLabel?.text = usersArray[indexPath.row]
+                cell.detailTextLabel?.text = "Points: 0"
+                cell.imageView?.image = UIImage(named: "Dude")
+                
+            }
+            
+        })
 
         return cell
         
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        guard let username = PFUser.currentUser()?.username else { return }
+        print("username \(username)")
+        guard let id = PFUser.currentUser()?.objectId else { return }
+        let msg = "\(username) is now following you."
+        
+        let pushQuery = PFInstallation.query()?.whereKey("installationUser", equalTo: id)
+        let push = PFPush()
+        push.setQuery(pushQuery)
+        push.setMessage(msg)
+        push.sendPushInBackgroundWithBlock { (bool, error) -> Void in
+            if error != nil {
+                print("error \(error)")
+                
+            } else {
+                print("completed")
+                
+            }
+            
+        }
+        
+    }
 
-    /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
+
+    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        
+    }
+
 
     /*
     // Override to support editing the table view.

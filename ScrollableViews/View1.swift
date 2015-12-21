@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-private let STORYBOARD = "Main"
+private let STORYBOARD = "Users"
 
 class View1: UIViewController {
 
@@ -19,7 +19,6 @@ class View1: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     @IBAction func loginPressed(sender: AnyObject) {
-        print("pressed")
         guard let username = usernameTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         

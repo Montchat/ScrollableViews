@@ -27,8 +27,6 @@ class View3: UIViewController {
         signUpUser(username, password: password, email: email)
         
     }
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
