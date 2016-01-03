@@ -82,13 +82,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if currentInstallation.badge != 0 {
                 currentInstallation.badge = 0
                 currentInstallation.saveInBackgroundWithBlock({ (bool, error) -> Void in
-                    if error != nil {
-                        print("error \(error)")
-                    } else {
-                        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-                        print("woohoo")
-                        
-                    }
+                    if error != nil { print("error \(error)") }
+                    else { UIApplication.sharedApplication().applicationIconBadgeNumber = 0 ; print("woohoo") }
                     
                 })
                 
